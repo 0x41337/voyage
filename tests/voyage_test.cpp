@@ -30,7 +30,7 @@ TEST(voyage_test, FindSymbolAddress_ModuleNotFound)
 TEST(voyage_test, FindSymbolAddress_SymbolNotFound)
 {
     void (*printf_ptr)(const char *_Format, ...) = nullptr;
-    VE_STATUS status = VE_FindSymbolAddress("libc.so", "not_found", &printf_ptr);
+    VE_STATUS status = VE_FindSymbolAddress("", "not_found", &printf_ptr);
 
     EXPECT_EQ(status, VE_ERROR_SYMBOL_NOT_FOUND);
 };
