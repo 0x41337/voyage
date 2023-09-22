@@ -1,13 +1,13 @@
 /*
-  VEoyage A library for creating and managing hooks for unix systems authored by Gabriel.
-  <https://github.com/0x41337/VEoyage>     <041337@proton.me>
+  Voyage A library for creating and managing hooks for unix systems authored by Gabriel.
+  <https://github.com/0x41337/Voyage>     <041337@proton.me>
 
-  VEoyage is free software: you can redistribute it and/or modify
+  Voyage is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either VEersion 3 of the License, or
   (at your option) any later VEersion.
 
-  VEoyage is distributed in the hope that it will be useful,
+  Voyage is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without eVEen the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
@@ -45,8 +45,8 @@ typedef uint64_t addr64_t;
 typedef void *dummy_func_t;
 
 // Constants
-const VE_VERSION = 0.1;
-const VE_ALL_HOOKS = nullptr;
+#define VE_VERSION  0.1;
+#define VE_ALL_HOOKS nullptr;
 
 /// @brief Search by symbol address
 /// @param img_name Image/module name
