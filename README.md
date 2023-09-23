@@ -1,5 +1,6 @@
 # The voyage
 [![CMake on a single platform](https://github.com/0x41337/voyage/actions/workflows/cmake-single-platform.yml/badge.svg)](https://github.com/0x41337/voyage/actions/workflows/cmake-single-platform.yml)
+![](https://img.shields.io/badge/License-GPL_3.0-blue)
 
 Voyage is a library for creating/managing hooks for unix systems.<br>
 Voyage is inspired by the [Dobby](https://github.com/jmpews/Dobby), [Minhook](https://github.com/TsudaKageyu/minhook) and [Libmem](https://github.com/rdbo/libmem) libraries, which are great libraries. (You should look)<br> 
