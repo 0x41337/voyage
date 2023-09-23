@@ -1,5 +1,5 @@
 # The voyage
-<img height="200" align="right" src="https://github.com/0x41337/voyage/blob/0848ff4a2e7711f606233319339f4025a98c8b6a/img/logo.svg" />
+<img height="120" align="right" src="https://github.com/0x41337/voyage/blob/0848ff4a2e7711f606233319339f4025a98c8b6a/img/logo.svg" />
 
 [![CMake on a single platform](https://github.com/0x41337/voyage/actions/workflows/cmake-single-platform.yml/badge.svg)](https://github.com/0x41337/voyage/actions/workflows/cmake-single-platform.yml)
 ![](https://img.shields.io/badge/License-GPL_3.0-blue)
