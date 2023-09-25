@@ -1,5 +1,6 @@
 # The voyage
 [![CMake on a single platform](https://github.com/0x41337/voyage/actions/workflows/cmake-single-platform.yml/badge.svg)](https://github.com/0x41337/voyage/actions/workflows/cmake-single-platform.yml)
+[![CodeQL](https://github.com/0x41337/voyage/actions/workflows/codeql.yml/badge.svg)](https://github.com/0x41337/voyage/actions/workflows/codeql.yml)
 ![](https://img.shields.io/badge/License-GPL_3.0-blue)
 ![](https://img.shields.io/badge/Version-0.3-yellow)
 
