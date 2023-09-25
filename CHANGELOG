@@ -1,4 +1,4 @@
-**Set.25.2023**, Version `0.3` (_Development_),
+**Set.25.2023**, Version `0.3` (_Development_), 4a51877e0946bb0215162949690b8734b7678bd8
 
 **Changes**:
 - Fix "Stack smashing at `memcpy(&jmp[1], &offset, sizeof(offset));`" a bug that occurred because the JMP array was smaller than the instruction, causing a buffer overflow. (Gabriel)
