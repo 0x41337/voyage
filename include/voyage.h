@@ -17,9 +17,17 @@
 */
 #pragma once
 
-#include <stdint.h>
+#include <vector>
 
-// All API status codes
+/// @brief Represents a hook
+struct Hook
+{
+    void *target;
+    unsigned char original_instructions[5];
+    bool enabled;
+};
+
+/// @brief All API status codes
 typedef enum VE_STATUS
 {
     VE_UNKNOWN = -1,
@@ -28,25 +36,14 @@ typedef enum VE_STATUS
     VE_ERROR_NOT_CREATED,
     VE_ERROR_ENABLED,
     VE_ERROR_DISABLED,
-    VE_ERROR_NOT_EXECUTABLE,
-    VE_ERROR_UNSUPPORTED_FUNCTION,
-    VE_ERROR_MEMORY_ALLOC,
     VE_ERROR_MEMORY_PROTECT,
     VE_ERROR_MODULE_NOT_FOUND,
     VE_ERROR_SYMBOL_NOT_FOUND,
-    VE_ERROR_FUNCTION_NOT_FOUND
 } VE_STATUS;
 
-// Types definitions
-typedef uintptr_t addr_t;
-typedef uint32_t addr32_t;
-typedef uint64_t addr64_t;
-
-typedef void *dummy_func_t;
-
 // Constants
-#define VE_VERSION 0.1;
-#define VE_ALL_HOOKS 0x00001;
+#define VE_VERSION 0.2;
+#define VE_ALL_HOOKS nullptr;
 
 /// @brief Search by symbol address
 /// @param img_name Image/module name
@@ -56,8 +53,8 @@ typedef void *dummy_func_t;
 VE_STATUS VE_FindSymbolAddress(const char *img_name, const char *sym_name, void *dest);
 
 /// @brief Create a hook
-/// @param address The address of function
-/// @param hook_function The detour function
+/// @param target_address Address to the target
+/// @param hook_address Address to the hook
 /// @param original_function  Pointer to original function
-/// @return `VE_STATUS` can be [`VE_ERROR_ALREADY_CREATED`, `VE_ERROR_NOT_CREATED` and `VE_OK`]
-VE_STATUS VE_CreateHook(void *address, dummy_func_t hook_func, dummy_func_t *original_function);
+/// @return `VE_STATUS` can be [`VE_ERROR_ALREADY_CREATED`, `VE_ERROR_NOT_CREATED`, `VE_ERROR_MEMORY_PROTECT` and `VE_OK`]
+VE_STATUS VE_CreateHook(void *target_address, void *hook_address, Hook *dest);

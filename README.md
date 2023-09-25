@@ -1,7 +1,7 @@
 # The voyage
 [![CMake on a single platform](https://github.com/0x41337/voyage/actions/workflows/cmake-single-platform.yml/badge.svg)](https://github.com/0x41337/voyage/actions/workflows/cmake-single-platform.yml)
 ![](https://img.shields.io/badge/License-GPL_3.0-blue)
-![](https://img.shields.io/badge/Version-0.1-yellow)
+![](https://img.shields.io/badge/Version-0.2-yellow)
 
 Voyage is a library for creating/managing hooks for unix systems.<br>
 Voyage is inspired by the [Dobby](https://github.com/jmpews/Dobby), [Minhook](https://github.com/TsudaKageyu/minhook) and [Libmem](https://github.com/rdbo/libmem) libraries, which are great libraries. (You should look)<br> 
@@ -10,7 +10,6 @@ If you know how to use some of the libraries mentioned, you will certainly feel 
 ## Dependencies
 
 -   `googletest` Framework for writing tests.
--   `capstone*` Disassembly/Disassembler framework for many architectures.
 
 ## How to build
 
@@ -61,17 +60,17 @@ $ ctest --test-dir build/tests
 ```
 
 ## Development status
-Voyage is still in the development phase in version 0.1. Below is a list of what has been implemented and what has not yet been implemented:
+Voyage is still in the development phase in version 0.2. Below is a list of what has been implemented and what has not yet been implemented:
 
 **Voyage core**
-- [ ] Trampoline (Current focus)
-- [ ] Memory protection
-- [ ] Support for multiple architectures
+- [x] Trampoline
+- [x] Memory protection
+- [ ] Support for multiple architectures (Current focus)
 
 **Voyage api**
 - [x] `VE_FindSymbolAddress`
-- [ ] `VE_CreateHook` (Current focus)
-- [ ] `VE_RemoveHook`
+- [x] `VE_CreateHook` 
+- [ ] `VE_RemoveHook` (Current focus)
 - [ ] `VE_EnableHook`
 - [ ] `VE_Disablehook`
 

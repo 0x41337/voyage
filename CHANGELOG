@@ -1,0 +1,9 @@
+**Set.24.2023**, Version `0.2` (_Development_)
+
+**Changes**:
+- Capstone library removal. (Gabriel)
+- Refactoring multiple parts of the code. (Gabriel)
+- Function creation: `VE_CreateHook`. (Gabriel)
+- Creation of `trampoline.hpp` and all code involving trampoline. (Gabriel)
+- Tests for `VE_CreateHook`. (Gabriel)
+- Basic example: `simple_hook.cpp`. (Gabriel)

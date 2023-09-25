@@ -1,6 +1,3 @@
-# capstone
-add_subdirectory(capstone)
-
 # googletest
 include(FetchContent)
 FetchContent_Declare(

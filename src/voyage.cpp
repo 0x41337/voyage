@@ -16,6 +16,8 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include <voyage.h>
+#include <trampoline.hpp>
+
 #include <dlfcn.h>
 #include <memory.h>
 
@@ -45,14 +47,37 @@ VE_STATUS VE_FindSymbolAddress(const char *img_name, const char *sym_name, void 
 
     // Close module
     dlclose(handle);
-    return VE_STATUS();
+
+    return VE_OK;
 }
 
-/// @brief Create a inline hook
-/// @param address The address of function
-/// @param hook_function The detour function
-/// @param original_function  Pointer to original function
-/// @return
-VE_STATUS VE_CreateHook(void *address, dummy_func_t hook_func, dummy_func_t *original_function)
+/// @brief Create a hook
+/// @param target_address Address to the target
+/// @param hook_address Address to the hook
+/// @return `VE_STATUS` can be [`VE_ERROR_ALREADY_CREATED`, `VE_ERROR_NOT_CREATED`, `VE_ERROR_MEMORY_PROTECT` and `VE_OK`]
+VE_STATUS VE_CreateHook(void *target_address, void *hook_address, Hook *dest)
 {
+    // TODO: Check if there is already a hook for this address
+
+    // Ensures that the memory page is writable and executable
+    auto status = Remove_memory_protection(target_address);
+    if (status != VE_OK)
+        return status;
+
+    // Save the original instructions
+    Save_original_instructions(target_address, dest);
+
+    // Apply JMP injection to the target address
+    Apply_detour(target_address, hook_address);
+
+    // Restores memory protection
+    status = Restore_memory_protection(target_address);
+    if (status != VE_OK)
+        return status;
+
+    // Configure the hook
+    dest->target = target_address;
+    dest->enabled = true;
+
+    return VE_OK;
 }

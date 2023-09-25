@@ -23,7 +23,6 @@ TEST(voyage_test, FindSymbolAddress_ModuleNotFound)
 {
     void (*printf_ptr)(const char *_Format, ...) = nullptr;
     VE_STATUS status = VE_FindSymbolAddress("not_found", "printf", &printf_ptr);
-
     EXPECT_EQ(status, VE_ERROR_MODULE_NOT_FOUND);
 };
 
@@ -31,7 +30,6 @@ TEST(voyage_test, FindSymbolAddress_SymbolNotFound)
 {
     void (*printf_ptr)(const char *_Format, ...) = nullptr;
     VE_STATUS status = VE_FindSymbolAddress("", "not_found", &printf_ptr);
-
     EXPECT_EQ(status, VE_ERROR_SYMBOL_NOT_FOUND);
 };
 
@@ -42,3 +40,22 @@ TEST(voyage_test, FindSymbolAddress_Success)
     EXPECT_EQ(status, VE_OK);
     EXPECT_NE(printf_ptr, nullptr);
 }
+
+/* Tests for: VE_CreateHook */
+int add(int x, int y) { return x + y; }
+int add_hook(int x, int y) { return x - y; }
+TEST(voyage_test, VE_CreateHook_Success)
+{
+    Hook hook;
+    VE_STATUS status = VE_CreateHook(reinterpret_cast<void *>(&add), reinterpret_cast<void *>(&add_hook), &hook);
+    EXPECT_EQ(status, VE_OK);
+    EXPECT_EQ(add(1, 1), 0);
+}
+
+// TODO:
+// TEST(voyage_test, VE_CreateHook_HookAlreadyCreated)
+// {
+//     Hook hook;
+//     VE_STATUS status = VE_CreateHook(reinterpret_cast<void *>(&add), reinterpret_cast<void *>(&add_hook), &hook);
+//     EXPECT_EQ(status, VE_ERROR_ALREADY_CREATED);
+// }
