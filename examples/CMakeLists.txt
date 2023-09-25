@@ -1,9 +1,10 @@
 include_directories("../include")
 
-add_executable(simple_hook
-    simple_hook.cpp
-)
+file(GLOB SOURCES "*.cpp")
 
-target_link_libraries(simple_hook
-    voyage
-)
+foreach(SOURCE_FILE ${SOURCES})
+    get_filename_component(EXECUTABLE_NAME ${SOURCE_FILE} NAME_WE)
+    add_executable(${EXECUTABLE_NAME} ${SOURCE_FILE})
+
+    target_link_libraries(${EXECUTABLE_NAME} voyage)
+endforeach()

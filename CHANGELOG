@@ -1,3 +1,13 @@
+**Set.25.2023**, Version `0.3` (_Development_),
+
+**Changes**:
+- Fix "Stack smashing at `memcpy(&jmp[1], &offset, sizeof(offset));`" a bug that occurred because the JMP array was smaller than the instruction, causing a buffer overflow. (Gabriel)
+- Function creation: `IsJumpToHook`. (Gabriel)
+- Function creation: `VE_RemoveHook`. (Gabriel)
+- Checking the target address to identify hooks in `VE_CreateHook`. (Gabriel)
+- Added status return for: `Apply_detour()`. (Gabriel)
+- Tests for `VE_RemoveHook`. (Gabriel)
+
 **Set.24.2023**, Version `0.2` (_Development_), 60460f077b001dd5423280204170160bb07d738c
 
 **Changes**:

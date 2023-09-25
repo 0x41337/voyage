@@ -17,8 +17,6 @@
 */
 #pragma once
 
-#include <vector>
-
 /// @brief Represents a hook
 struct Hook
 {
@@ -37,6 +35,7 @@ typedef enum VE_STATUS
     VE_ERROR_ENABLED,
     VE_ERROR_DISABLED,
     VE_ERROR_MEMORY_PROTECT,
+    VE_ERROR_ALLOCATE_MEMORY,
     VE_ERROR_MODULE_NOT_FOUND,
     VE_ERROR_SYMBOL_NOT_FOUND,
 } VE_STATUS;
@@ -58,3 +57,9 @@ VE_STATUS VE_FindSymbolAddress(const char *img_name, const char *sym_name, void 
 /// @param original_function  Pointer to original function
 /// @return `VE_STATUS` can be [`VE_ERROR_ALREADY_CREATED`, `VE_ERROR_NOT_CREATED`, `VE_ERROR_MEMORY_PROTECT` and `VE_OK`]
 VE_STATUS VE_CreateHook(void *target_address, void *hook_address, Hook *dest);
+
+
+/// @brief Remove a hook completely
+/// @param hook The strutct that represents the hook
+/// @return `VE_STATUS` can be [`VE_ERROR_MEMORY_PROTECT` and `VE_OK`]
+VE_STATUS VE_RemoveHook(Hook* hook);
