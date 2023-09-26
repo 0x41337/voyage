@@ -62,7 +62,7 @@ void Restore_original_instructions(Hook *hook)
 
 /// @brief Reads instructions from the target address and checks if it is a `jmp`
 /// @param target_address Address to the target
-/// @param hook_address Address to the target
+/// @param hook_address Address to the hook
 /// @return If the address contains a jmp instruction
 bool IsJumpToHook(void *target_address, void *hook_address)
 {
