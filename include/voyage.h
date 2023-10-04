@@ -81,4 +81,4 @@ VE_STATUS VE_EnableHook(Hook *hook);
 /// @brief Disable a hook
 /// @param hook The hook
 /// @return `VE_STATUS` can be [`VE_ERROR_ALREADY_DISABLED`, `VE_ERROR_MEMORY_PROTECT` and `VE_OK`]
-VE_STATUS VE_Disablehook(Hook *hook);
+VE_STATUS VE_DisableHook(Hook *hook);
