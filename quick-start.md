@@ -40,9 +40,9 @@ int main(int argc, char const *argv[])
 ```
 {% endcode %}
 
-In this example we create a hook in the sum function called "Add()", it receives two integers and returns their sum. In our Hook we receive the integers and do subtraction. When Add() is called our hook function is called instead doing a subtraction instead of addition.
+In this example we create a hook in the sum function called **Add()**, it receives two integers and returns their sum. In our Hook we receive the integers and do subtraction. When **Add()** is called our hook function is called instead doing a subtraction instead of addition.
 
-So, if I want to disable this hook? to disable this hook we can use " VE\_Disablehook"
+So, if I want to disable this hook? to disable this hook we can use **VE\_DisableHook**
 
 {% code lineNumbers="true" %}
 ```cpp
@@ -76,7 +76,7 @@ int main(int argc, char const *argv[])
     } 
     
     // Disable the function hook by restoring its behavior
-    status = VE_Disablehook(&hook);
+    status = VE_DisableHook(&hook);
     
     // Verify that the hook was successfully disabled
     if (status == VE_OK)
@@ -89,7 +89,7 @@ int main(int argc, char const *argv[])
 ```
 {% endcode %}
 
-As you can see the hook was disabled with **VE\_Disablehook** you can pass the hook which is a structure that represents the hook so the hook can be disabled and the function is restored.
+As you can see the hook was disabled with **VE\_DisableHook** you can pass the hook which is a structure that represents the hook so the hook can be disabled and the function is restored.
 
 Nice. With this, you can do some things, but what about enabling the hook again? We can use **VE\_EnableHook** to enable the hook again.
 
@@ -125,7 +125,7 @@ int main(int argc, char const *argv[])
     } 
     
     // Disable the function hook by restoring its behavior
-    status = VE_Disablehook(&hook);
+    status = VE_DisableHook(&hook);
     
     // Verify that the hook was successfully disabled
     if (status == VE_OK)
@@ -183,7 +183,7 @@ int main(int argc, char const *argv[])
     } 
     
     // Disable the function hook by restoring its behavior
-    status = VE_Disablehook(&hook);
+    status = VE_DisableHook(&hook);
     
     // Verify that the hook was successfully disabled
     if (status == VE_OK)
