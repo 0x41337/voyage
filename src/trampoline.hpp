@@ -15,11 +15,13 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+#pragma once
+
 #include <unistd.h>
 #include <memory.h>
+#include <malloc.h>
 #include <inttypes.h>
 #include <sys/mman.h>
-#include <malloc.h>
 
 #include <voyage.h>
 

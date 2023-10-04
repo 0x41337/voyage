@@ -20,29 +20,39 @@
 /// @brief Represents a hook
 struct Hook
 {
-    void *target;
-    unsigned char original_instructions[5];
-    bool enabled;
+  void *target;
+  void *hook_address;
+  unsigned char original_instructions[5];
+  bool enabled;
 };
 
 /// @brief All API status codes
 typedef enum VE_STATUS
 {
-    VE_UNKNOWN = -1,
-    VE_OK = 0,
-    VE_ERROR_ALREADY_CREATED,
-    VE_ERROR_NOT_CREATED,
-    VE_ERROR_ENABLED,
-    VE_ERROR_DISABLED,
-    VE_ERROR_MEMORY_PROTECT,
-    VE_ERROR_ALLOCATE_MEMORY,
-    VE_ERROR_MODULE_NOT_FOUND,
-    VE_ERROR_SYMBOL_NOT_FOUND,
+  VE_OK = 0,
+
+  // Creating hooks errors
+  VE_ERROR_ALREADY_CREATED,
+  VE_ERROR_NOT_CREATED,
+
+  // Enable hooks errors
+  VE_ERROR_ALREADY_ENABLED,
+  VE_ERROR_ALREADY_DISABLED,
+
+  // Memory protection errors
+  VE_ERROR_MEMORY_PROTECT,
+
+  // Memory allocation errors
+  VE_ERROR_ALLOCATE_MEMORY,
+
+  // Find symbol erros
+  VE_ERROR_MODULE_NOT_FOUND,
+  VE_ERROR_SYMBOL_NOT_FOUND,
+
 } VE_STATUS;
 
 // Constants
-#define VE_VERSION 0.2;
-#define VE_ALL_HOOKS nullptr;
+#define VE_VERSION 0.4;
 
 /// @brief Search by symbol address
 /// @param img_name Image/module name
@@ -58,8 +68,17 @@ VE_STATUS VE_FindSymbolAddress(const char *img_name, const char *sym_name, void 
 /// @return `VE_STATUS` can be [`VE_ERROR_ALREADY_CREATED`, `VE_ERROR_NOT_CREATED`, `VE_ERROR_MEMORY_PROTECT` and `VE_OK`]
 VE_STATUS VE_CreateHook(void *target_address, void *hook_address, Hook *dest);
 
-
 /// @brief Remove a hook completely
 /// @param hook The strutct that represents the hook
 /// @return `VE_STATUS` can be [`VE_ERROR_MEMORY_PROTECT` and `VE_OK`]
-VE_STATUS VE_RemoveHook(Hook* hook);
+VE_STATUS VE_RemoveHook(Hook *hook);
+
+/// @brief Enable a hook
+/// @param hook The hook
+/// @return `VE_STATUS` can be [`VE_ERROR_ALREADY_ENABLED`, `VE_ERROR_MEMORY_PROTECT`, `VE_ERROR_ALLOCATE_MEMORY` and `VE_OK`]
+VE_STATUS VE_EnableHook(Hook *hook);
+
+/// @brief Disable a hook
+/// @param hook The hook
+/// @return `VE_STATUS` can be [`VE_ERROR_ALREADY_DISABLED`, `VE_ERROR_MEMORY_PROTECT` and `VE_OK`]
+VE_STATUS VE_Disablehook(Hook *hook);

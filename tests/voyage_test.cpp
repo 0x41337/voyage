@@ -53,17 +53,15 @@ TEST(voyage_test, VE_CreateHook_Success)
     EXPECT_EQ(add(1, 1), 0);
 }
 
-
 TEST(voyage_test, VE_CreateHook_HookAlreadyCreated)
 {
     Hook hook;
-    
+
     VE_CreateHook(reinterpret_cast<void *>(&add), reinterpret_cast<void *>(&add_hook), &hook);
     VE_STATUS status = VE_CreateHook(reinterpret_cast<void *>(&add), reinterpret_cast<void *>(&add_hook), &hook);
-    
+
     EXPECT_EQ(status, VE_ERROR_ALREADY_CREATED);
 }
- 
 
 /* tests for: VE_RemoveHook */
 int sub(int x, int y) { return x - y; };
@@ -71,13 +69,43 @@ int sub_hook(int x, int y) { return x + y; };
 TEST(voyage_test, VE_RemoveHook_Success)
 {
     Hook hook;
-    
+
     VE_STATUS status = VE_CreateHook(reinterpret_cast<void *>(&sub), reinterpret_cast<void *>(&sub_hook), &hook);
     EXPECT_EQ(status, VE_OK);
     EXPECT_EQ(sub(1, 1), 2);
 
     status = VE_RemoveHook(&hook);
     EXPECT_EQ(status, VE_OK);
-    EXPECT_EQ(sub(1,1), 0);
+    EXPECT_EQ(sub(1, 1), 0);
+}
 
+/* tests for: VE_EnableHook and VE_Disablehook */
+TEST(voyage_test, VE_Disablehook_Success)
+{
+    Hook hook;
+
+    VE_STATUS status = VE_CreateHook(reinterpret_cast<void *>(&sub), reinterpret_cast<void *>(&sub_hook), &hook);
+    EXPECT_EQ(status, VE_OK);
+    EXPECT_EQ(sub(1, 1), 2);
+
+    status = VE_Disablehook(&hook);
+    EXPECT_EQ(status, VE_OK);
+    EXPECT_EQ(sub(1, 1), 0);
+}
+
+TEST(voyage_test, VE_EnableHook_Success)
+{
+    Hook hook;
+
+    VE_STATUS status = VE_CreateHook(reinterpret_cast<void *>(&sub), reinterpret_cast<void *>(&sub_hook), &hook);
+    EXPECT_EQ(status, VE_OK);
+    EXPECT_EQ(sub(1, 1), 2);
+
+    status = VE_Disablehook(&hook);
+    EXPECT_EQ(status, VE_OK);
+    EXPECT_EQ(sub(1, 1), 0);
+
+    status = VE_EnableHook(&hook);
+    EXPECT_EQ(status, VE_OK);
+    EXPECT_EQ(sub(1, 1), 2);
 }

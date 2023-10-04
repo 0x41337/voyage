@@ -1,3 +1,13 @@
+**Oct.04.2023**, Version `0.4` (_Beta_)
+
+**Changes**:
+- Refactoring multiple parts of the code. (Gabriel)
+- Function creation: `VE_EnableHook`. (Gabriel)
+- Function creation: `VE_Disablehook`. (Gabriel)
+- Tests for `VE_EnableHook`. (Gabriel)
+- Tests for `VE_Disablehook`. (Gabriel)
+
+
 **Set.25.2023**, Version `0.3` (_Development_), 4a51877e0946bb0215162949690b8734b7678bd8
 
 **Changes**:

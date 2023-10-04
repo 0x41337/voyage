@@ -57,7 +57,7 @@ VE_STATUS VE_FindSymbolAddress(const char *img_name, const char *sym_name, void 
 /// @return `VE_STATUS` can be [`VE_ERROR_ALREADY_CREATED`, `VE_ERROR_ALLOCATE_MEMORY`, `VE_ERROR_NOT_CREATED`, `VE_ERROR_MEMORY_PROTECT` and `VE_OK`]
 VE_STATUS VE_CreateHook(void *target_address, void *hook_address, Hook *dest)
 {
-    // TODO: Check if there is already a hook for this address
+    // Check if there is already a hook for this address
     if (IsJumpToHook(target_address, hook_address))
         return VE_ERROR_ALREADY_CREATED;
 
@@ -81,6 +81,7 @@ VE_STATUS VE_CreateHook(void *target_address, void *hook_address, Hook *dest)
 
     // Configure the hook
     dest->target = target_address;
+    dest->hook_address = hook_address;
     dest->enabled = true;
 
     return VE_OK;
@@ -103,6 +104,64 @@ VE_STATUS VE_RemoveHook(Hook *hook)
     status = Restore_memory_protection(hook->target);
     if (status != VE_OK)
         return status;
+
+    return VE_OK;
+}
+
+/// @brief Enable a hook
+/// @param hook The hook
+/// @return `VE_STATUS` can be [`VE_ERROR_ALREADY_ENABLED`, `VE_ERROR_MEMORY_PROTECT`, `VE_ERROR_ALLOCATE_MEMORY` and `VE_OK`]
+VE_STATUS VE_EnableHook(Hook *hook)
+{
+    // Check if hook already enabled
+    if (hook->enabled)
+        return VE_ERROR_ALREADY_ENABLED;
+
+    // Ensures that the memory page is writable and executable
+    auto status = Remove_memory_protection(hook->target);
+    if (status != VE_OK)
+        return status;
+
+    // Apply JMP injection to the target address
+    status = Apply_detour(hook->target, hook->hook_address);
+    if (status != VE_OK)
+        return status;
+
+    // Restores memory protection
+    status = Restore_memory_protection(hook->target);
+    if (status != VE_OK)
+        return status;
+
+    // Configure the hook
+    hook->enabled = true;
+
+    return VE_OK;
+}
+
+/// @brief Enable a hook
+/// @param hook The hook
+/// @return `VE_STATUS` can be [`VE_ERROR_ALREADY_DISABLED`, `VE_ERROR_MEMORY_PROTECT` and `VE_OK`]
+VE_STATUS VE_Disablehook(Hook *hook)
+{
+    // Check if hook already enabled
+    if (!hook->enabled)
+        return VE_ERROR_ALREADY_DISABLED;
+
+    // Ensures that the memory page is writable and executable
+    auto status = Remove_memory_protection(hook->target);
+    if (status != VE_OK)
+        return status;
+
+    // Restore original instructions
+    Restore_original_instructions(hook);
+
+    // Restores memory protection
+    status = Restore_memory_protection(hook->target);
+    if (status != VE_OK)
+        return status;
+
+    // Configure the hook
+    hook->enabled = false;
 
     return VE_OK;
 }
