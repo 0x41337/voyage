@@ -76,16 +76,16 @@ Voyage is still in the Beta phase in version 0.4. Below is a list of what has be
 * [x] `VE_CreateHook`
 * [x] `VE_RemoveHook`
 * [x] `VE_EnableHook`
-* [x] `VE_Disablehook`
+* [x] `VE_DisableHook`
 
 **Voyage repository**
 
-* [x] Documentation (Current focus)
-* [ ] Examples
+* [x] Documentation 
+* [ ] Examples (Current focus)
 
 ## Documentation
 
-All library documentation is available in https://gabriels-organization-19.gitbook.io/voyage/
+All library documentation is available in [here](https://gabriels-organization-19.gitbook.io/voyage/)
 
 ## Examples
 
