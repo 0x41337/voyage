@@ -85,7 +85,7 @@ Voyage is still in the Beta phase in version 0.4. Below is a list of what has be
 
 ## Documentation
 
-All library documentation is available as markdown files in the `docs` folder
+All library documentation is available in https://gabriels-organization-19.gitbook.io/voyage/
 
 ## Examples
 
