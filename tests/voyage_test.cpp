@@ -79,8 +79,8 @@ TEST(voyage_test, VE_RemoveHook_Success)
     EXPECT_EQ(sub(1, 1), 0);
 }
 
-/* tests for: VE_EnableHook and VE_Disablehook */
-TEST(voyage_test, VE_Disablehook_Success)
+/* tests for: VE_EnableHook and VE_DisableHook */
+TEST(voyage_test, VE_DisableHook_Success)
 {
     Hook hook;
 
@@ -88,7 +88,7 @@ TEST(voyage_test, VE_Disablehook_Success)
     EXPECT_EQ(status, VE_OK);
     EXPECT_EQ(sub(1, 1), 2);
 
-    status = VE_Disablehook(&hook);
+    status = VE_DisableHook(&hook);
     EXPECT_EQ(status, VE_OK);
     EXPECT_EQ(sub(1, 1), 0);
 }
@@ -101,7 +101,7 @@ TEST(voyage_test, VE_EnableHook_Success)
     EXPECT_EQ(status, VE_OK);
     EXPECT_EQ(sub(1, 1), 2);
 
-    status = VE_Disablehook(&hook);
+    status = VE_DisableHook(&hook);
     EXPECT_EQ(status, VE_OK);
     EXPECT_EQ(sub(1, 1), 0);
 
