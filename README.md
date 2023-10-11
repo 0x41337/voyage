@@ -81,7 +81,7 @@ Voyage is still in the Beta phase in version 0.4. Below is a list of what has be
 **Voyage repository**
 
 * [x] Documentation 
-* [ ] Examples (Current focus)
+* [x] Examples (Current focus)
 
 ## Documentation
 
