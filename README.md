@@ -80,12 +80,12 @@ Voyage is still in the Beta phase in version 0.4. Below is a list of what has be
 
 **Voyage repository**
 
-* [x] Documentation 
+* [x] Wiki 
 * [x] Examples (Current focus)
 
-## Documentation
+## Documentation/Wiki
 
-All library documentation is available in [here](https://gabriels-organization-19.gitbook.io/voyage/)
+All library documentation is available in [here](https://github.com/0x41337/voyage/wiki)
 
 ## Examples
 
